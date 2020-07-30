@@ -1,6 +1,20 @@
 const mongoose = require('mongoose');
 
-const StudentModel = mongoose.model('student', {name: String, age: Number}) 
+
+let StudentSchema = new mongoose.Schema({
+    name: {
+        type: String,
+        unique: true,
+    }, 
+    age: {
+        type: Number,
+        max: 60,
+        min: [20, 'Hey Kiddo!!!']
+    }, 
+    bootcamp: String
+})
+
+const StudentModel = mongoose.model('student', StudentSchema) 
 
 
 module.exports = StudentModel
